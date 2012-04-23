@@ -1,0 +1,134 @@
+
+(function() {
+
+		
+		var code = document.getElementById('code');
+		var codeMirror = CodeMirror.fromTextArea(code,
+		{ 
+			onChange : function() {
+				$('#run-btn').addClass('disabled');
+				$('#build-run-btn').removeClass('disabled');
+				$('#build-btn').removeClass('disabled');			
+			},
+			lineWrapping : true			
+		});
+
+		var classname, applicationClasspath, bootClasspath, workerPath;
+		
+		bootClasspath = "/jre";
+		workerPath = "/jre/workers";
+				
+		$('#save').click(function() {
+			if( $(this).hasClass('disabled') ) {
+				return;
+			}
+			$.post('/compiles/new',
+				{
+					'compile' : {
+						'code' : codeMirror.getValue(),
+						'classname' : 'HelloWorld'
+					}
+				},
+				function(data) {
+					window.location.href = window.location.href.replace(window.location.pathname, '/'+data.uuid);
+				}
+			);
+		});
+		$('#build-btn').click(function() {
+			if( $(this).hasClass('disabled') ) {
+                                return;
+                        }
+			$('#terminal').empty();
+			$('#working').css('visibility','visible');
+			$(this).addClass('disabled');
+			$('#build-run-btn').addClass('disabled');
+			$.post('/compiles',
+                                {
+					'compile' : {
+                                        	'code' : codeMirror.getValue(),
+						'classname' : 'HelloWorld'						
+					}
+                                },
+                                function(data) {	
+					var error;
+					if (data.classname) {
+						classname = data.classname
+						window.classpath = '/tmp/' + data.uuid;
+						$('#run-btn').removeClass('disabled');
+						$('#working').css('visibility','hidden');
+					}
+					else {
+						error = data.error.join('');
+						$('#terminal').html('<pre>'+error+'</pre>');	
+						$('#build-run-btn').removeClass('disabled');
+						$('#build-btn').removeClass('disabled');	
+					}
+				}
+
+			);
+		});	
+                $('#build-run-btn').click(function() {
+			
+			if( $(this).hasClass('disabled') ) {
+				return;
+			}
+			$('#working').css('visibility','visible');
+			$(this).addClass('disabled');
+			$('#build-btn').addClass('disabled');
+
+                        $('#terminal').empty();
+                        $.post('compiler/compile.php',
+                                {
+                                        class : codeMirror.getValue()
+                                },
+                                function(data) {
+                                	runJVM(JSON.parse(data));
+				}
+                        );
+                });
+		
+		$('#run-btn').click(function() {
+			if( $(this).hasClass('disabled') ) {
+                                return;
+                        }
+			$('#terminal').empty();
+                        runJVM(); 			
+		});
+		function runJVM(response) {
+			var error;
+			if (response) classname = response.classname;
+			if (!response || response.result == 1) {
+				new JVM({
+					'stdin' : null,
+					'stdout' : 'terminal',
+					'stderr' : 'terminal',
+				        'verbosity' : 'warn',
+				        'classname' : classname,
+				        'classpath' : bootClasspath,
+				        'path' : window.classpath,
+				        'workerpath' : workerPath
+
+				});	
+				$('#run-btn').removeClass('disabled');
+				$('#working').css('visibility', 'hidden');
+			}
+			else {
+				error = response.error.replace(/\$/g, '\n');
+				$('#terminal').html('<pre>'+error+'</pre>');
+				$('#build-run-btn').removeClass('disabled');
+                                $('#build-btn').removeClass('disabled');
+			}
+		} 		
+		$('#clear-code-btn').click(function() {
+			codeMirror.setValue('');
+		});
+		$('#clear-output-btn').click(function() {
+			$('#terminal').empty();
+		});
+		$('.accordion').click(function() {
+			$(this).removeClass('last');
+			$(this).next().toggle('fast');
+			return false;
+		}).next().hide();
+		
+}).call(this);

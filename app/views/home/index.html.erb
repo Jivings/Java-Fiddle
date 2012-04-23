@@ -1,0 +1,49 @@
+        <script type="text/javascript">
+		window.classpath = "<%= @classpath %>";
+	</script>
+
+	<div id="container">
+                <div id="content">
+                        <div id="sidebar">
+                                <h1><a href="/">java fiddle</a></h1>
+                                <ul>
+					<li class="nav-btn accordion">Examples</li>
+					<li class="nav-content hidden"><p>Some examples here.</p></li>
+					<li class="nav-btn"><a href="https://github.com/Jivings/jsJVM/issues">Report a Bug</a></li>
+					<li class="nav-btn accordion last">About</li>
+					<li class="nav-content hidden last">
+					<p>JavaFiddle is intended as an example use of <span class="jsjvm">&lt;jsJVM&gt;</span>, a cloud based Java platform.</p>
+						<p>Created and maintained by <br /><a href="http://www.ivings.org.uk">James Ivings</a>.</p>
+					</li>
+                                </ul>
+				<p id="empowered">Powered by <span class="jsjvm"><a href="http://jsjvm.org">&lt;jsJVM&gt;</a></span></p>
+                        </div>
+                        <div id="editpane">
+				<textarea id="code" rows=10 cols=10 >
+<%= @code  %>
+</textarea>
+                        </div>
+
+                </div>
+
+                <div id="bottom-pane">
+			<div id="status">
+				<ul>
+					<li class="nav-btn" id="build-btn">Build</li>
+
+					<li class="nav-btn disabled" id="run-btn">Run</li>
+					<li class="nav-btn" id="build-run-btn">Build and Run</li>
+					<li class="nav-btn" id="save">Save</li>
+				</ul>
+				<p id="working"></p>
+				<ul>
+					<li class="nav-btn" id="clear-code-btn">Clear code</li>
+					<li class="nav-btn" id="clear-output-btn">Clear output</li>
+				</ul>
+			</div>
+			<div id="terminal">
+			</div>
+                </div>
+        </div>
+
+

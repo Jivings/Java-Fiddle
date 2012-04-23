@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @compile.code %>
+</p>
+
+<p>
+  <b>Classname:</b>
+  <%= @compile.classname %>
+</p>
+
+
+<%= link_to 'Edit', edit_compile_path(@compile) %> |
+<%= link_to 'Back', compiles_path %>

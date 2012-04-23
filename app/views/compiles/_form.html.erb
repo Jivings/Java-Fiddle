@@ -1,0 +1,25 @@
+<%= form_for(@compile) do |f| %>
+  <% if @compile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compile.errors.count, "error") %> prohibited this compile from being saved:</h2>
+
+      <ul>
+      <% @compile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_area :code %>
+  </div>
+  <div class="field">
+    <%= f.label :classname %><br />
+    <%= f.text_field :classname %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

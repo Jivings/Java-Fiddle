@@ -1,0 +1,25 @@
+<h1>Listing compiles</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Classname</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @compiles.each do |compile| %>
+  <tr>
+    <td><%= compile.code %></td>
+    <td><%= compile.classname %></td>
+    <td><%= link_to 'Show', compile %></td>
+    <td><%= link_to 'Edit', edit_compile_path(compile) %></td>
+    <td><%= link_to 'Destroy', compile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Compile', new_compile_path %>
