@@ -9,9 +9,9 @@ set :scm_email, "james@ivings.org.uk"
 
 set :deploy_to, "/var/www/javafiddle"
 
-role :web, "localhost"                          # Your HTTP server, Apache/etc
-role :app, "localhost"                          # This may be the same as your `Web` server
-role :db,  "localhost", :primary => true # This is where Rails migrations will run
+role :web, "www.javafiddle.net"                          # Your HTTP server, Apache/etc
+role :app, "www.javafiddle.net"                          # This may be the same as your `Web` server
+role :db,  "www.javafiddle.net", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
