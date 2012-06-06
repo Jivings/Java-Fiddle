@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require codemirror.js
 //= require clike.js
-//= require jvm.js
+// require jvm.js
 // require_tree .

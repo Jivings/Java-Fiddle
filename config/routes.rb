@@ -14,6 +14,9 @@ JavaFiddle::Application.routes.draw do
   match '/compiles' => 'compiles#create'
 
   match '/:id' => "home#show"
+
+  match '/code/:id' => "output#show"
+  match '/code/' => "output#index"
   
   #match '/jre/workers/Thread.js' => 'jre#thread', :via => :get
   #match 'jre/native/*other' => 'jre#native', :via => :get

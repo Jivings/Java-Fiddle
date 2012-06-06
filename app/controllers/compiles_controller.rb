@@ -9,7 +9,7 @@ class CompilesController < ApplicationController
     stdin, stdout, stderr = compileAndSave()
     logger.debug stderr
     respond_to do |format|
-      if @compile.save
+      if @compile.save!
         format.json { render :json => @compile }
       else
 	format.json { render :json => 'Fail' }
