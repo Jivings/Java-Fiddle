@@ -10,6 +10,7 @@ class CreateCompiles < ActiveRecord::Migration
       t.text :code
       t.string :classname
       t.string :uuid
+      t.string :arguments
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 class Compile < ActiveRecord::Base
-  attr_accessible :classname, :code, :error, :uuid
+  attr_accessible :classname, :code, :error, :uuid, :arguments
 
   validates :uuid, :uniqueness => { :case_sensitive => false }
   validates :uuid, :presence => true
