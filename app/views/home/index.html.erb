@@ -1,25 +1,38 @@
 	<div id="container">
     <div id="content">
       <div id="sidebar">
-        <h1><a href="/">java fiddle</a></h1>
+        <h1><a href="/"><%= image_tag("logo.png", :border=>0, :class=>'logo') %></a></h1>
           <ul>
-					  <li class="nav-btn accordion">Examples</li>
-            <li class="nav-content hidden">
-              <ul id="examples">
-                <li id="helloworld">Hello World</li>
-              </ul>
+					  <li class="nav-btn accordion open" >Program Arguments</li>
+            <li class="nav-content">
+            <p><input id="arguments" placeholder="arg1, arg2, etc" value="<%= @args %>" type="text"/></p>
+              
             </li>
-					  <li class="nav-btn"><a href="https://github.com/Jivings/jsJVM/issues">Report a Bug</a></li>
+
+            <li class="nav-btn accordion">Compatibility</li>
+            <li class="nav-content hidden">
+              <select id="compatability">
+                <option disabled="disabled">JRE 7</option>
+                <option selected="selected">JRE 6</option>
+                <option disabled="disabled">jsJVM</option>
+              </select>
+            </li>
+
+            <li class="nav-btn">
+              <a href="https://github.com/Jivings/jsJVM/issues">Report a Bug</a>
+            </li>
 					  <li class="nav-btn accordion last">About</li>
 					  <li class="nav-content hidden last">
               <p>JavaFiddle was intended as an example use of <span class="jsjvm">&lt;jsJVM&gt;</span>, 
               a cloud based Java platform.</p>
               <p>The concept, inspired by <a href="http://jsfiddle.net">jsfiddle</a> 
               has since evolved to encompass other Java Virtual Machines.</p>
-						  <p>Created and maintained by <br /><a href="http://www.ivings.org.uk">James Ivings</a>.</p>
+              <p>Created and maintained by <br /><a href="http://www.ivings.org.uk">James Ivings</a>.</p>
+              <h3>Licence</h3>
+              <p>All code is owned by the original submitter. No further licences are enforced.</p>
+              <p>This website is not responsible for damage of any kind caused by the execution or usage of submitted code.</p>
 					  </li>
           </ul>
-				  <p id="empowered">Powered by <span class="jsjvm"><a href="http://jsjvm.org">&lt;jsJVM&gt;</a></span></p>
       </div>
       <div id="editpane">
 				<textarea id="code" rows=10 cols=10 >
@@ -46,5 +59,3 @@
 			</div>
     </div>
  </div>
-
-

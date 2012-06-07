@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+Compile.create(:id => 0, :code => "unimportant", :classname => "HelloWorld", :uuid => "default", :arguments => "Hello World")

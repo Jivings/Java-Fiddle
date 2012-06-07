@@ -1,10 +1,10 @@
 # accordion control
 $('.accordion').click( ->
-  $(this).removeClass('last')
   $(this).next().toggle('fast')
   return false
 ).next().hide()
-			
+	
+$('.open').click()
 # codeMirror options
 code = document.getElementById 'code'
 codeMirror = CodeMirror.fromTextArea( code,
@@ -29,7 +29,8 @@ $('#save').click ->
   $.post '/compiles/new',
     compile:
       code: codeMirror.getValue(),
-      classname: "HelloWorld"
+      classname: "HelloWorld",
+      arguments: $('#arguments').val()
   ,(data) ->
     window.location.href = window.location.href.replace(window.location.pathname, "/#{data.uuid}")
 
@@ -46,7 +47,8 @@ build = (after) ->
   $.post '/compiles/new',
 		  compile :
         code : codeMirror.getValue(),
-        classname : 'HelloWorld'
+        classname : 'HelloWorld',
+        arguments : $('#arguments').val()
   ,(data) ->
     if data.classname?
       classData = data

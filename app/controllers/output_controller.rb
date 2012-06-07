@@ -2,6 +2,7 @@ class OutputController < ApplicationController
   # GET /
   def index
 	@classpath = "/saved/default/"
+  @args = ""
 	respond_to do |format|
 	  format.html # index.html.erb
 	end
@@ -10,7 +11,10 @@ class OutputController < ApplicationController
   # GET /1
   def show
     @uuid = params[:id]
-    @classname = getClassname(@uuid)
+    data = getClassData(@uuid);
+
+    @classname = data[:classname]
+    @args = data[:arguments]
     
     render :action => "index"
   end
@@ -18,10 +22,10 @@ class OutputController < ApplicationController
     
 
   # get main classname
-  def getClassname(uuid)
+  def getClassData(uuid)
     compileData = Compile.where("uuid = '#{uuid}'" ).first
     if compileData
-      return compileData[:classname]
+      return compileData
     else 
       return "No data"      
     end

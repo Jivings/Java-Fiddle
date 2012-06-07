@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
   # GET /
   def index
-    @code = read('default', 'HelloWorld')
-    @classpath = "default"
+    if @classpath.nil?
+      @classpath = "default"
+    end
+    classData = getClassData(@classpath)
+    @args = classData[:arguments]
+    @code = read(@classpath, classData[:classname])
+
 	  respond_to do |format|
 	    format.html # index.html.erb
 	  end
@@ -11,15 +16,13 @@ class HomeController < ApplicationController
   # GET /1
   def show
     @classpath = params[:id]
-    classname = getClassname(@classpath)
-    @code = read(@classpath, classname)
-    render :action => "index"
+    index()
   end
 
-  def getClassname(uuid)
+  def getClassData(uuid)
     compileData = Compile.where("uuid = '#{uuid}'" ).first
     if compileData
-      return compileData[:classname]
+      return compileData
     else
       return "No data"
     end
