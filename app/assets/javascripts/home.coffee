@@ -55,12 +55,13 @@ build = (after) ->
   ,(data) ->
     if data.classname?
       classData = data
+      $('#compile-error').hide()
       $('#run-btn').removeClass('disabled')
       $('#working').css('visibility','hidden')
       if after then after()
     else
       error = data.error.join('')
-      $('#terminal').html('<pre>'+error+'</pre>')
+      $('#compile-error').text(error).show()
       $('iframe').hide()
       $('#build-run-btn').removeClass('disabled')
       $('#build-btn').removeClass('disabled')

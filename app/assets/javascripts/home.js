@@ -59,6 +59,7 @@
       var error;
       if (data.classname != null) {
         classData = data;
+        $('#compile-error').hide();
         $('#run-btn').removeClass('disabled');
         $('#working').css('visibility', 'hidden');
         if (after) {
@@ -66,7 +67,7 @@
         }
       } else {
         error = data.error.join('');
-        $('#terminal').html('<pre>' + error + '</pre>');
+        $('#compile-error').text(error).show();
         $('iframe').hide();
         $('#build-run-btn').removeClass('disabled');
         return $('#build-btn').removeClass('disabled');

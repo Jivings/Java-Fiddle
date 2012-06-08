@@ -30,6 +30,9 @@ a {
         padding:5px;
 }
 
+#compile-error {
+  display:none;
+}
 #content {
         margin-bottom:20px;
 }
