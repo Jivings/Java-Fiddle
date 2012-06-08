@@ -32,12 +32,15 @@ $('#save').click ->
       classname: "HelloWorld",
       arguments: $('#arguments').val()
   ,(data) ->
-    window.location.href = window.location.href.replace(window.location.pathname, "/#{data.uuid}")
+    if window.location.pathname is '/' 
+      window.location.href = window.location.href + "#{data.uuid}"
+    else
+      window.location.href = window.location.href.replace(window.location.pathname, "/#{data.uuid}")
 
 
 run = ->
   return if $(this).hasClass 'disabled'
-  $('iframe').attr('src', 'http://localhost:3000/code/' + classData.uuid)
+  $('iframe').attr('src', 'http://javafiddle.net/code/' + classData.uuid).show()
 
 build = (after) ->
   return if $(this).hasClass 'disabled'
@@ -54,17 +57,22 @@ build = (after) ->
       classData = data
       $('#run-btn').removeClass('disabled')
       $('#working').css('visibility','hidden')
-      after()
+      if after then after()
     else
       error = data.error.join('')
       $('#terminal').html('<pre>'+error+'</pre>')
+      $('iframe').hide()
       $('#build-run-btn').removeClass('disabled')
       $('#build-btn').removeClass('disabled')
 
-$('#build-btn').click build
+$('#build-btn').click -> build(null)
 $('#run-btn').click run
 $('#build-run-btn').click ->
   build(run)
+
+$('#clear-code-btn').click ->
+  codeMirror.setValue('')
+    
 
 runJavaScriptJVM = (response) ->
   classname = response.classname if response

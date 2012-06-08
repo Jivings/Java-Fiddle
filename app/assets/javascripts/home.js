@@ -40,7 +40,7 @@
     if ($(this).hasClass('disabled')) {
       return;
     }
-    return $('iframe').attr('src', 'http://javafiddle.net/code/' + classData.uuid);
+    return $('iframe').attr('src', 'http://javafiddle.net/code/' + classData.uuid).show();
   };
   build = function(after) {
     if ($(this).hasClass('disabled')) {
@@ -67,6 +67,7 @@
       } else {
         error = data.error.join('');
         $('#terminal').html('<pre>' + error + '</pre>');
+        $('iframe').hide();
         $('#build-run-btn').removeClass('disabled');
         return $('#build-btn').removeClass('disabled');
       }

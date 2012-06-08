@@ -4,16 +4,17 @@ class CompilesController < ApplicationController
   # GET /compiles/new.json
   def new
     @compile = Compile.new(params[:compile])
-    #@compile[:uuid] = uuid
-    #@compile[:arguments] = params[:arguments]
     logger.debug 'Save'
     stdin, stdout, stderr = compileAndSave()
-    logger.debug stderr
+    logger.debug stderr.gets
+    logger.debug stdout.gets
+
     respond_to do |format|
-      if @compile.save!
+      if @compile.save! and stderr.gets == nil
         format.json { render :json => @compile }
       else
-	format.json { render :json => 'Fail' }
+        @compile[:error] = stderr
+        format.json { render :json => @compile.to_json(:only => [:error]), status => :ok }
       end
     end
   end
