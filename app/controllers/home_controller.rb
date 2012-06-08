@@ -1,16 +1,21 @@
 class HomeController < ApplicationController
   # GET /
   def index
-    if @classpath.nil?
-      @classpath = "default"
+    #if @classpath.nil?
+    #  @classpath = "default"
+    #end
+    if params[:id].nil?
+       @classpath = "default"
+    else
+       @classpath = params[:id]
     end
     classData = getClassData(@classpath)
     @args = classData[:arguments]
     @code = read(@classpath, classData[:classname])
-
-	  respond_to do |format|
-	    format.html # index.html.erb
-	  end
+    
+    respond_to do |format|
+      format.html # index.html.erb
+    end
   end
 
   # GET /1

@@ -13,7 +13,7 @@ JavaFiddle::Application.routes.draw do
   match '/compiles/new' => 'compiles#new'
   match '/compiles' => 'compiles#create'
 
-  match '/:id' => "home#show"
+  match '/:id' => "home#index"
 
   match '/code/:id' => "output#show"
   match '/code/' => "output#index"

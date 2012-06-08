@@ -61,7 +61,7 @@ class CompilesController < ApplicationController
     File.open(file, "w+"  ) do |f|
       f.puts @compile[:code]
     end
-    return Open3.popen3("javac -cp #{Rails.root}/public/jre/rt #{file}")
+    return Open3.popen3("javac #{file}")
   end
 
   # DELETE /compiles/1

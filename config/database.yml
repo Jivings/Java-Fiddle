@@ -27,5 +27,5 @@ production:
   pool: 5
   username: root
   password: GammaMonkey_33
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   timeout: 5000

@@ -2,8 +2,16 @@
 <html>
 <head>
   <title>JavaFiddle</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "home", :media => "all" %>
+  <%= stylesheet_link_tag    "codemirror", :media => "all" %>
+  <%= stylesheet_link_tag    "scaffolds", :media => "all" %>
+
+
+  <%= javascript_include_tag "jquery.min.js" %>
+  <%= javascript_include_tag "jquery-ui.min.js" %>
+  <%= javascript_include_tag "codemirror" %>
+  <%= javascript_include_tag "clike" %>
+
   <%= csrf_meta_tags %>
   <script type="text/javascript">
 
