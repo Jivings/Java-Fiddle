@@ -55,7 +55,8 @@
 				</ul>
 			</div>
       <div id="terminal">
-        <pre id="compile-error"></pre>  
+
+        <pre <%= unless @compileError.nil? then print "style='display:block'" end %> id="compile-error"> <%= @compileError %> </pre>  
         <iframe src="http://javafiddle.net/code/<%= @classpath %>"></iframe>
 			</div>
     </div>

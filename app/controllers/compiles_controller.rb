@@ -4,19 +4,22 @@ class CompilesController < ApplicationController
 
   # GET /compiles/new
   # GET /compiles/new.json
+  #
+  # Executes when user clicks the save button
+  # Saves code to disk and returns a UUID to the 
+  # browser. If the code is compilable it will also
+  # be compiled.
   def new
     @compile = Compile.new(params[:compile])
-    logger.debug 'Save'
     stdin, stdout, stderr = compileAndSave()
-    logger.debug stderr.gets
-    logger.debug stdout.gets
 
     respond_to do |format|
       if @compile.save! and stderr.gets == nil
         format.json { render :json => @compile }
       else
         @compile[:error] = stderr
-        format.json { render :json => @compile.to_json(:only => [:error]), status => :ok }
+        @compile.save!
+        format.json { render :json => @compile.to_json(:only => [:error, :uuid]), status => :ok }
       end
     end
   end
