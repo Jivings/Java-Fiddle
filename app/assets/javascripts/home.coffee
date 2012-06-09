@@ -32,6 +32,10 @@ $('#save').click ->
       classname: "HelloWorld",
       arguments: $('#arguments').val()
   ,(data) ->
+    if data.error
+      $('#compile-error').text(data.error.join(''))
+      return
+
     if window.location.pathname is '/' 
       window.location.href = window.location.href + "#{data.uuid}"
     else
