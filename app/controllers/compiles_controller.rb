@@ -1,3 +1,5 @@
+# Handle code compilation and creation of
+# Unique Identifiers for compiled classes
 class CompilesController < ApplicationController
 
   # GET /compiles/new
