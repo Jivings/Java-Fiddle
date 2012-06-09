@@ -32,6 +32,10 @@ $('#save').click ->
       classname: "HelloWorld",
       arguments: $('#arguments').val()
   ,(data) ->
+    if data.error
+      $('#compile-error').text(data.error.join(''))
+      return
+
     if window.location.pathname is '/' 
       window.location.href = window.location.href + "#{data.uuid}"
     else
@@ -60,7 +64,7 @@ build = (after) ->
       if after then after()
     else
       error = data.error.join('')
-      $('#terminal').html('<pre>'+error+'</pre>')
+      $('#compile-error').text(error)
       $('iframe').hide()
       $('#build-run-btn').removeClass('disabled')
       $('#build-btn').removeClass('disabled')
