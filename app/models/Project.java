@@ -1,6 +1,8 @@
-package models
+package models;
 
 import javax.persistence.Id;
+
+import java.security.MessageDigest;
 
 import play.db.ebean.Model;
 
@@ -27,7 +29,4 @@ public class Project extends Model {
     project.save();
   }
 
-  public static void delete(String uuid) {
-    find.ref(uuid).delete();
-  }
 }
