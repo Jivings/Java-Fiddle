@@ -1,5 +1,9 @@
 package models
 
+import javax.persistence.Id;
+
+import play.db.ebean.Model;
+
 public class Project extends Model {
 
     //So the project obj contains the code, hash, uuid, compilation error
@@ -18,5 +22,12 @@ public class Project extends Model {
   public static Finder<String, Project> find = new Finder<String, Project>(
     String.class, Project.class
   );
+  
+  public static void create(Project project) {
+    project.save();
+  }
 
+  public static void delete(String uuid) {
+    find.ref(uuid).delete();
+  }
 }
