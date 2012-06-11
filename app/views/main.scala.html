@@ -6,10 +6,18 @@
     <head>
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/scaffolds.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/codemirror.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        
         <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-ui.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/codemirror.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/clike.js")" type="text/javascript"></script>
+
     </head>
     <body>
         @content
     </body>
+    <script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
 </html>

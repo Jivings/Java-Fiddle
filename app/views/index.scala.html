@@ -1,7 +1,64 @@
-@(message: String)
+@(code: String)
 
 @main("Welcome to Play 2.0") {
     
-    @play20.welcome(message, style = "Java")
+	<div id="container">
+ 	<div id="content">
+  <div id="sidebar">
+    <h1><a href="/"><img class="logo" alt="Java Fiddle" src="/assets/images/logo.png" ></a></h1>
+   	<ul>
+				<li class="nav-btn accordion open" >Program Arguments</li>
+    		<li class="nav-content">
+    				<p><input id="arguments" placeholder="arg1, arg2, etc" value="" type="text"/></p>
+    		</li>
+      <li class="nav-btn accordion">Compatibility</li>
+      <li class="nav-content hidden">
+		      <select id="compatability">
+  		      <option disabled="disabled">JRE 7</option>
+          <option selected="selected">JRE 6</option>
+          <option disabled="disabled">jsJVM</option>
+        </select>
+      </li>
+      <li class="nav-btn">
+		      <a href="https://github.com/Jivings/Java-Fiddle/issues">Report a Bug</a>
+      </li>
+				  <li class="nav-btn accordion last">About</li>
+				  <li class="nav-content hidden last">
+  	     <p>JavaFiddle was intended as an example use of <span class="jsjvm">&lt;jsJVM&gt;</span>, 
+        a cloud based Java platform.</p>
+        <p>The concept, inspired by <a href="http://jsfiddle.net">jsfiddle.net</a> 
+        has since evolved to encompass other Java Virtual Machines.</p>
+        <p>Created and maintained by <br /><a href="http://www.ivings.org.uk">James Ivings</a>.</p>
+        <h3>Licence</h3>
+        <p>All code is owned by the original submitter. No further licences are enforced.</p>
+        <p>This website is not responsible for damage of any kind caused by the execution or usage of submitted code.</p>
+				  </li>
+   	</ul>
+    </div>
+    <div id="editpane">
+						<textarea id="code" rows=10 cols=10 >
+					 	 @code
+     	</textarea>
+    </div>
+  </div>
+  <div id="bottom-pane">
+		  <div id="status">
+						<ul>
+					 		<li class="nav-btn" id="build-btn">Build</li>
+					 		<li class="nav-btn disabled" id="run-btn">Run</li>
+					 		<li class="nav-btn" id="build-run-btn">Build and Run</li>
+					 		<li class="nav-btn" id="save">Save</li>
+						</ul>
+						<p id="working"></p>
+						<ul>
+					  <li class="nav-btn" id="clear-code-btn">Clear code</li>
+					  <!--<li class="nav-btn" id="clear-output-btn">Clear output</li>-->
+				  </ul>
+		 	</div>
+    <div id="terminal">
+ 			</div>
+  </div>
+ </div>
+
     
 }
