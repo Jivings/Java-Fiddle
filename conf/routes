@@ -8,7 +8,7 @@ GET     /                           controllers.Application.index()
 # Get saved projects
 GET     /:uuid                      controllers.Project.get(uuid: String)
 # Save a project
-POST    /new/                       controllers.Project.new()
+POST    /new/                       controllers.Project.newProject()
 # Save a revision
 POST    /:uuid/save                 controllers.Project.save(uuid: String)
 # Get a revision

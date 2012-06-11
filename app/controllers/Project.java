@@ -32,7 +32,7 @@ public class Project extends Controller {
   /**
    * Create a new Project
    */
-  public static Result new() {
+  public static Result newProject() {
     return ok("new");
   }
 
