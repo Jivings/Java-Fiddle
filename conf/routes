@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.Project.getDefault()
 
 # Get saved projects
 GET     /:uuid                      controllers.Project.get(uuid: String)

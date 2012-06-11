@@ -6,12 +6,19 @@ import play.mvc.*;
 import views.html.*;
 
 public class Project extends Controller {
-  
+
+  /**
+   * Get the default project
+   */
+  public static Result getDefault() {
+    return get("default");
+  }
+
   /**
    * Get a saved Project
    */
   public static Result get(String uuid) {
-    return ok("get");
+    return ok(index.render("get"));
   }
   /**
    * Get a project revision
