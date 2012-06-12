@@ -2,12 +2,14 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.data.Form;
 
 import views.html.*;
 import models.*;
 
 public class Project extends Controller {
 
+  public static Form<ProjectModel> projectForm = form(ProjectModel.class);
   /**
    * Get the default project
    */
@@ -20,7 +22,7 @@ public class Project extends Controller {
    */
   public static Result get(String uuid) {
     ProjectModel p = ProjectModel.find.byId(uuid);
-    return ok(index.render(p)); // GET views.index.html
+    return ok(index.render(p, projectForm)); // GET views.index.html
   }
   /**
    * Get a project revision
@@ -33,7 +35,7 @@ public class Project extends Controller {
    * Save a project revision
    */
   public static Result save(String uuid) {
-    return ok("save");
+    return TODO;
 
   }
 

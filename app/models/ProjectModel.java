@@ -22,6 +22,10 @@ public class ProjectModel extends Model {
 
   public String compilationError;
 
+  public String arguments;
+
+  public String compilerLevel;
+
   //Also may need to store the Class file in here
   
   public static Finder<String, ProjectModel> find = 

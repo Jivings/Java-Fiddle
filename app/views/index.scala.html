@@ -1,23 +1,27 @@
-@(project: ProjectModel)
+@(project: ProjectModel, projectForm: Form[ProjectModel])
 
-@main("Welcome to Play 2.0") {
+@import helper._
+<!-- Import our own basic input field template -->
+@implicitField = @{ FieldConstructor(basicField.f) }
+
+@main("Java Fiddle") {
     
-	<div id="container">
+<div id="container">
+  @form(routes.Project.newProject()) {
  	<div id="content">
-  <div id="sidebar">
+    <div id="sidebar">
     <h1><a href="/"><img class="logo" alt="Java Fiddle" src="/assets/images/logo.png" ></a></h1>
    	<ul>
 				<li class="nav-btn accordion open" >Program Arguments</li>
     		<li class="nav-content">
-    				<p><input id="arguments" placeholder="arg1, arg2, etc" value="" type="text"/></p>
+        <p>
+        @inputText(projectForm("arguments"), 'placeholder -> "arg1, arg2, etc")
+        </p>
     		</li>
       <li class="nav-btn accordion">Compatibility</li>
       <li class="nav-content hidden">
-		      <select id="compatability">
-  		      <option disabled="disabled">JRE 7</option>
-          <option selected="selected">JRE 6</option>
-          <option disabled="disabled">jsJVM</option>
-        </select>
+      @select(projectForm("compilerLevel"), 
+        options = options(Compilers.list()))
       </li>
       <li class="nav-btn">
 		      <a href="https://github.com/Jivings/Java-Fiddle/issues">Report a Bug</a>
@@ -44,10 +48,8 @@
   <div id="bottom-pane">
 		  <div id="status">
 						<ul>
-					 		<li class="nav-btn" id="build-btn">Build</li>
-					 		<li class="nav-btn disabled" id="run-btn">Run</li>
-					 		<li class="nav-btn" id="build-run-btn">Build and Run</li>
-					 		<li class="nav-btn" id="save">Save</li>
+              <li class="nav-btn disabled">Run</li>
+              <li class="nav-btn"><input type="submit" value="Save"></li>
 						</ul>
 						<p id="working"></p>
 						<ul>
@@ -57,8 +59,9 @@
 		 	</div>
     <div id="terminal">
  			</div>
-  </div>
- </div>
+    </div>
+    }
+</div>
 
     
 }
