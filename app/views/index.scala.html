@@ -7,7 +7,7 @@
 @main("Java Fiddle") {
     
 <div id="container">
-  @form(routes.Project.newProject()) {
+  @form((if(project.uuid == "default") routes.Project.newProject() else routes.Project.save(project.uuid))) {
  	<div id="content">
     <div id="sidebar">
     <h1><a href="/"><img class="logo" alt="Java Fiddle" src="/assets/images/logo.png" ></a></h1>
@@ -41,14 +41,15 @@
     </div>
     <div id="editpane">
 			<textarea id="code" rows=10 cols=10 >
- @project.code
+@project.code
      	</textarea>
     </div>
   </div>
   <div id="bottom-pane">
 		  <div id="status">
 						<ul>
-              <li class="nav-btn disabled">Run</li>
+              <li class="nav-btn disabled">
+                <input type="button" id="run-btn" value="Run"></li>
               <li class="nav-btn"><input type="submit" value="Save"></li>
 						</ul>
 						<p id="working"></p>
