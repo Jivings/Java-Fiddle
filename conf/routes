@@ -5,6 +5,9 @@
 # Home page
 GET     /                           controllers.Project.getDefault()
 
+# debug route to create default db value
+GET     /debug                      controllers.Project.debug()
+
 # Get saved projects
 GET     /:uuid                      controllers.Project.get(uuid: String)
 # Save a project

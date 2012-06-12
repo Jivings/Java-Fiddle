@@ -1,12 +1,15 @@
 package models;
 
 import javax.persistence.Id;
+import javax.persistence.Entity;
 
 import java.security.MessageDigest;
 
 import play.db.ebean.Model;
 
-public class Project extends Model {
+
+@Entity
+public class ProjectModel extends Model {
 
     //So the project obj contains the code, hash, uuid, compilation error
     //  And possibly the class file data
@@ -21,11 +24,10 @@ public class Project extends Model {
 
   //Also may need to store the Class file in here
   
-  public static Finder<String, Project> find = new Finder<String, Project>(
-    String.class, Project.class
-  );
+  public static Finder<String, ProjectModel> find = 
+    new Finder<String, ProjectModel>(String.class, ProjectModel.class);
   
-  public static void create(Project project) {
+  public static void create(ProjectModel project) {
     project.save();
   }
 
