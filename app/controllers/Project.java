@@ -19,15 +19,14 @@ public class Project extends Controller {
    * Get a saved Project
    */
   public static Result get(String uuid) {
-    ProjectModel p = ProjectModel.find.byId(uuid);    
-    return ok(index.render(p));
+    ProjectModel p = ProjectModel.find.byId(uuid);
+    return ok(index.render(p)); // GET views.index.html
   }
   /**
    * Get a project revision
    */
   public static Result patch(String uuid, Long revisionId) {
-
-    return ok("patch");
+    return ok("patch"); 
   }
 
   /**
@@ -51,7 +50,12 @@ public class Project extends Controller {
   public static Result debug() {
     ProjectModel p = new ProjectModel();
     p.uuid = "default";
-    p.code = "Code";
+    p.code = 
+      "public class HelloWorld { \n" +
+      "  public static void main(String... args) { \n" +
+      "    System.out.println(\"Hello World\"); \n" +
+      "  } \n" + 
+      "}";
     p.save();
     return ok("Debug sample created");
   }
