@@ -16,7 +16,8 @@ import javax.tools.ToolProvider;
 import javax.tools.JavaCompiler.CompilationTask;
 
 public class Compiler {
-  public static void main(String args[]) throws IOException {
+  
+  public static void main(String[] args) {
     JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
    
     if(compiler == null){

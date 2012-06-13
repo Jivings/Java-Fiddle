@@ -28,7 +28,7 @@ public class Project extends Controller {
    * Get a project revision
    */
   public static Result patch(String uuid, Long revisionId) {
-    return ok("patch"); 
+    return TODO; 
   }
 
   /**
