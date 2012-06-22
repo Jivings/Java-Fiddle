@@ -1,4 +1,4 @@
-@(project: ProjectModel, projectForm: Form[ProjectModel])
+@(projectForm: Form[ProjectModel], project: ProjectModel)
 
 @import helper._
 <!-- Import our own basic input field template -->
@@ -40,9 +40,12 @@
    	</ul>
     </div>
     <div id="editpane">
-			<textarea id="code" rows=10 cols=10 >
-@project.code
-     	</textarea>
+      @textarea(
+        projectForm("code"),
+        'id -> "code",
+        'rows -> 10,
+        'cols -> 10
+      )
     </div>
   </div>
   <div id="bottom-pane">
