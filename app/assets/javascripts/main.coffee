@@ -12,9 +12,20 @@ codeMirror = CodeMirror.fromTextArea( code,
     $('#run-btn').addClass 'disabled'
     $('#build-run-btn').removeClass 'disabled'
     $('#build-btn').removeClass 'disabled'
+    $('#classname').val(codeMirror.getClassname())
   lineWrapping : true
+  matchBrackets : true
+  lineNumbers : true
+  mode : "text/x-java"
+  autofocus: true
+  gutter: true
 )
-		
+
+codeMirror.getClassname = () ->
+  search = @getSearchCursor new RegExp(' *(public)? +(abstract +|final +)?class +([^ ]+)')
+  found = search.findNext()
+  return found[3]
+
 #####################
 #  button handlers  #
 #####################
@@ -25,25 +36,33 @@ classData = {
 }
 
 
+###
 $('#save').click ->
   return  if $(this).hasClass 'disabled'
   $.post '/new',
     compile:
       code: codeMirror.getValue(),
-      classname: "HelloWorld",
+      classname: codeMirror.getClassname(),
       arguments: $('#arguments').val()
   ,(data) ->
     if window.location.pathname is '/'
       window.location.href = window.location.href + "#{data.uuid}"
     else
       window.location.href = window.location.href.replace(window.location.pathname, "/#{data.uuid}")
+###
 
 
 run = ->
-  # fixme
-  alert('not implemnted')
-  return if $(this).hasClass 'disabled'
-  $('iframe').attr('src', 'http://javafiddle.net/code/' + classData.uuid).show()
+  $.post('/compile',
+  {
+    classname : $('#classname').val()
+    code : codeMirror.getValue()
+    arguments : $('#arguments').val()
+  },
+  (classID) ->
+    $('iframe').attr('src', '/run/' + classID)
+  )
+
 
 build = (after) ->
   # fixme
@@ -55,7 +74,7 @@ build = (after) ->
   $.post '/compiles/new',
 		  compile :
         code : codeMirror.getValue(),
-        classname : 'HelloWorld',
+        classname : codeMirror.getClassname(),
         arguments : $('#arguments').val()
   ,(data) ->
     if data.classname?

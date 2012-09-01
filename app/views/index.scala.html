@@ -1,4 +1,4 @@
-@(projectForm: Form[ProjectModel], project: ProjectModel)
+@(projectForm: Form[ProjectModel])
 
 @import helper._
 <!-- Import our own basic input field template -->
@@ -7,7 +7,8 @@
 @main("Java Fiddle") {
     
 <div id="container">
-  @form((if(project.uuid == "default") routes.Project.newProject() else routes.Project.save(project.uuid))) {
+  @form((if(projectForm("uuid").value == "default") routes.Project.newProject()
+  else routes.Project.save(projectForm("uuid").value))) {
  	<div id="content">
     <div id="sidebar">
     <h1><a href="/"><img class="logo" alt="Java Fiddle" src="/assets/images/logo.png" ></a></h1>
@@ -47,6 +48,7 @@
         'cols -> 10
       )
     </div>
+    <input name="classname" id="classname" type="hidden" value="@projectForm("classname").value" />
   </div>
   <div id="bottom-pane">
 		  <div id="status">
@@ -61,8 +63,9 @@
 					  <!--<li class="nav-btn" id="clear-output-btn">Clear output</li>-->
 				  </ul>
 		 	</div>
-    <div id="terminal">
- 			</div>
+      <div id="terminal">
+        <iframe src=""></iframe>
+ 		  </div>
     </div>
     }
 </div>

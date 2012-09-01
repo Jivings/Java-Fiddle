@@ -1,30 +1,41 @@
 package models;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import java.security.MessageDigest;
 
 import play.db.ebean.Model;
 
+import play.data.validation.Constraints.*;
+
+import difflib.*;
 
 @Entity
 public class ProjectModel extends Model {
 
-    //So the project obj contains the code, hash, uuid, compilation error
-    //  And possibly the class file data
   @Id
+  public long id;
+
   public String uuid;
 
+  @Required
   public String code;
 
   public MessageDigest hash;
 
-  public String compilationError;
+  public String compilationErrors;
 
   public String arguments;
+  
+  public Patch patch;
 
+  public long revision = 0;
+
+  @Required
   public String compilerLevel;
+
+  @Required
+  public String classname;
 
   //Also may need to store the Class file in here
   

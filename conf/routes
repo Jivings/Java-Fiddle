@@ -5,18 +5,27 @@
 # Home page
 GET     /                           controllers.Project.getDefault()
 
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
 # debug route to create default db value
 GET     /debug                      controllers.Project.debug()
+# Run button clicked
+POST    /compile                    controllers.Run.compile()
+GET     /run/:id                    controllers.Run.get(id: String)
+GET     /run/saved/:uuid            controllers.Run.getSaved(uuid: String, rev: Long = 0)
+GET     /run/saved/:uuid/:rev       controllers.Run.getSaved(uuid: String, rev: Long)
+# Called by the Java Applet to get the Java Class file
+GET     /classes/:id/$classname<.+\.class>     controllers.Run.getClassFile(id: String, classname: String)
+
 
 # Get saved projects
 GET     /:uuid                      controllers.Project.get(uuid: String)
 # Save a project
 POST    /new/                       controllers.Project.newProject()
-# Save a revision
+# Save a new revision
 POST    /:uuid/save                 controllers.Project.save(uuid: String)
 # Get a revision
 GET     /:uuid/:rev                 controllers.Project.patch(uuid: String, rev: Long)
-
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+# Save a revision > 0
+GET     /:uuid/:rev/save            controllers.Project.saveRevision(uuid: String, rev: Long)
