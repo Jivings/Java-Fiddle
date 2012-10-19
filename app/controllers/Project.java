@@ -37,7 +37,11 @@ public class Project extends Controller {
    */
   public static Result get(String uuid) {
     // get project from the database
-    ProjectModel p = ProjectModel.find.where().eq("uuid", uuid).eq("revision", 0).findUnique();
+    ProjectModel p = ProjectModel.find
+      .where()
+      .eq("uuid", uuid)
+      .eq("revision", 0)
+      .findUnique();
     System.out.println(p.classname);
     // fill the form model and display
     return ok(index.render(projectForm.fill(p))); // GET views.index.html
@@ -90,7 +94,6 @@ public class Project extends Controller {
    * Create a new Project
    */
   public static Result newProject() {
-    System.out.println("Saving a new Project");
     Form<ProjectModel> filledForm = projectForm.bindFromRequest();
     if (filledForm.hasErrors()) {
       return badRequest(
@@ -109,13 +112,11 @@ public class Project extends Controller {
 
   @BodyParser.Of(BodyParser.Json.class)
   public static Result compileTemp(String classname, String code) {
-    System.out.println("Compiling a temporary class");
     RequestBody body = request().body();
     return ok("got json: " + body.asJson());
   }
 
   private static boolean compile(String classname, String code) {
-    System.out.println("Compiling a class: " + classname);
     final FiddleCompiler c = new FiddleCompiler();
     c.addSource(classname, code);
 

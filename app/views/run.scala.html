@@ -1,0 +1,11 @@
+@(id: String, classname: String, args: String)
+
+@main("Run") {
+
+   <applet code="Wrapper.class" archive="/assets/JavaFiddle.jar" width="100%"
+   height="100%">
+    <param name="classname" value="@classname">
+    <param name="path" value="http://localhost:9000/classes/@id/">
+    <param name="arguments" value="@args">
+   </applet>  
+}
