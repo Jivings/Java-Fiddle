@@ -5,7 +5,7 @@
 
 create table compiled_class_model (
   id                        varchar(255) not null,
-  classdata                 bytea,
+  classdata                 varbinary(255),
   classname                 varchar(255),
   arguments                 varchar(255),
   constraint pk_compiled_class_model primary key (id))
@@ -50,13 +50,17 @@ create sequence revision_seq;
 
 # --- !Downs
 
-drop table if exists compiled_class_model cascade;
+SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists project_model cascade;
+drop table if exists compiled_class_model;
 
-drop table if exists revision cascade;
+drop table if exists project_model;
 
-drop table if exists revision_model cascade;
+drop table if exists revision;
+
+drop table if exists revision_model;
+
+SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists compiled_class_model_seq;
 
