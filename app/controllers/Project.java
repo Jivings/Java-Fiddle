@@ -168,7 +168,7 @@ public class Project extends Controller {
    * chars.
    * This gives 52^6 different values.
    *
-   * BEWARE: Birthday paradox
+   * FIXME: Birthday paradox
    * TODO: Check that value doesn't exist.
    */
   public static String createUUID() {
