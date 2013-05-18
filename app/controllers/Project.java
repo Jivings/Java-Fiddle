@@ -2,7 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-import play.data.*;
+import play.data.Form;
 import play.mvc.Http.RequestBody;
 
 import views.html.*;
@@ -16,7 +16,7 @@ import difflib.*;
 
 public class Project extends Controller {
 
-  public static Form<ProjectModel> projectForm = form(ProjectModel.class);
+  public static Form<ProjectModel> projectForm = Form.form(ProjectModel.class);
 
   /**
    * Get the default project

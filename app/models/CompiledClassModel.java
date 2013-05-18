@@ -17,6 +17,7 @@ public class CompiledClassModel extends Model {
 
   public MessageDigest hash;
 
+  @Column(length=9999)
   @Required
   public byte[] classdata;
 

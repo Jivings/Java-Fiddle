@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 
 import play.db.ebean.Model;
 
-import play.data.validation.Constraints.*;
+import play.api.data.validation.Constraints.*;
 
 import difflib.*;
 
@@ -18,7 +18,7 @@ public class ProjectModel extends Model {
 
   public String uuid;
 
-  @Required
+//  @Required
   public String code;
 
   public MessageDigest hash;
@@ -31,10 +31,10 @@ public class ProjectModel extends Model {
 
   public long revision = 0;
 
-  @Required
+//  @Required
   public String compilerLevel;
 
-  @Required
+//  @Required
   public String classname;
 
   //Also may need to store the Class file in here

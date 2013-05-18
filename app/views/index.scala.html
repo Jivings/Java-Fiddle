@@ -7,8 +7,10 @@
 @main("Java Fiddle") {
     
 <div id="container">
-  @form((if(projectForm("uuid").value == "default") routes.Project.newProject()
-  else routes.Project.save(projectForm("uuid").value))) {
+  @form(action = ( 
+    if(projectForm("uuid").value == "default") routes.Project.newProject()
+    else routes.Project.save(projectForm("uuid").value))
+  ) {
  	<div id="content">
     <div id="sidebar">
     <h1><a href="/"><img class="logo" alt="Java Fiddle" src="/assets/images/logo.png" ></a></h1>

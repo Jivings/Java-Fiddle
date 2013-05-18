@@ -5,7 +5,7 @@
 
 create table compiled_class_model (
   id                        varchar(255) not null,
-  classdata                 varbinary(255),
+  classdata                 varbinary(9999),
   classname                 varchar(255),
   arguments                 varchar(255),
   constraint pk_compiled_class_model primary key (id))

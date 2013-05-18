@@ -2,7 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-import play.data.*;
+import play.data.DynamicForm;
 import play.mvc.Http.RequestBody;
 
 import views.html.*;
@@ -38,7 +38,7 @@ public class Run extends Controller {
   }
 
   public static Result compile() {
-    DynamicForm requestData = form().bindFromRequest();
+    DynamicForm requestData = DynamicForm.form().bindFromRequest();
     String classname = requestData.get("classname");
     String code = requestData.get("code");
     String args = requestData.get("args");
